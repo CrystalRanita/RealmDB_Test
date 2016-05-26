@@ -1,0 +1,3 @@
+rootProject.name = 'db_test'
+
+include ':app'
