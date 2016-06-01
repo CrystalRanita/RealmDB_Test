@@ -4,8 +4,9 @@ const Realm = require('realm');
 class Step extends Realm.Object{}
 Step.schema = {
     name: 'Step',
+    primaryKey: 'username', //Set as primary key
     properties: {
-        username: 'string',
+        username: 'string', //Primary Key
         date: 'string',
         bpm: {type: 'int', default: 0},
         steps: {type: 'int', default: 0},
@@ -32,4 +33,15 @@ SelectItems.schema = {
     },
 };
 
-export default new Realm({ schema: [Step, Acc, SelectItems]})
+class Group extends Realm.Object{}
+Group.schema = {
+    name: 'Group',
+    properties: {
+        title: 'string',
+        step_data: {type: 'Step'},
+    },
+};
+export default new Realm({
+  schema: [Step, Acc, SelectItems, Group],
+  schemaVersion: 3
+})
